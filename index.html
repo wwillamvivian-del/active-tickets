@@ -3,55 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ticketmaster - Discover Events</title>
+    <title>Ticketmaster - Discover</title>
     <style>
-        body { font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; background-color: #f4f4f4; color: #1f1f1f; }
-        .tm-header { background-color: #1f262d; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; }
-        .tm-logo { color: white; font-size: 20px; font-weight: bold; text-decoration: none; }
-        .search-section { background-color: #026cdf; padding: 40px 20px; text-align: center; color: white; }
-        .search-bar { width: 100%; max-width: 500px; padding: 15px 20px; border-radius: 30px; border: none; font-size: 16px; outline: none; }
-        .content-body { padding: 20px; max-width: 600px; margin: 0 auto; }
-        .event-card { background: white; border: 1px solid #ddd; border-radius: 12px; overflow: hidden; margin-bottom: 25px; }
-        .event-image { width: 100%; height: 180px; background-size: cover; background-position: center; }
-        .event-details { padding: 15px; }
-        .date-blue { color: #026cdf; font-weight: bold; font-size: 13px; text-transform: uppercase; }
-        .event-name { font-size: 19px; font-weight: bold; margin: 8px 0; }
-        .sub-text { color: #666; font-size: 13px; margin-bottom: 15px; }
-        .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #eee; padding-top: 15px; }
-        .see-tickets-btn { background-color: #026cdf; color: white; padding: 10px 20px; border-radius: 4px; text-decoration: none; font-weight: bold; font-size: 14px; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; background-color: #f7f7f7; }
+        .nav-bar { background: #1f262d; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { color: #fff; font-size: 18px; font-weight: bold; text-decoration: none; }
+        .search-hero { background: #026cdf; padding: 30px 20px; text-align: center; }
+        .search-hero h1 { color: white; margin: 0 0 15px 0; font-size: 24px; font-weight: 700; }
+        .search-input { width: 90%; max-width: 450px; padding: 14px 20px; border-radius: 25px; border: none; font-size: 15px; }
+        .container { padding: 20px; max-width: 500px; margin: 0 auto; }
+        .card { background: white; border-radius: 12px; overflow: hidden; margin-bottom: 20px; border: 1px solid #e0e0e0; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .card-img { width: 100%; height: 180px; background-size: cover; background-position: center; }
+        .card-content { padding: 15px; }
+        .card-date { color: #026cdf; font-weight: 700; font-size: 12px; margin-bottom: 5px; }
+        .card-title { font-size: 18px; font-weight: 800; margin: 5px 0; color: #1f1f1f; }
+        .card-venue { color: #666; font-size: 13px; margin-bottom: 15px; }
+        .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f0f0f0; padding-top: 15px; }
+        .price-label { font-size: 12px; color: #666; display: block; }
+        .price-val { font-weight: 800; font-size: 16px; }
+        .btn { background: #026cdf; color: white; padding: 10px 18px; border-radius: 4px; text-decoration: none; font-weight: 700; font-size: 14px; }
     </style>
 </head>
 <body>
-    <div class="tm-header"><a href="#" class="tm-logo">ticketmaster</a><div style="color: white; font-size: 20px;">👤</div></div>
-    <div class="search-section"><h1>Discover Events Near You</h1><input type="text" class="search-bar" placeholder="Search for events"></div>
-    <div class="content-body">
-        
-        <div class="event-card">
-            <div class="event-image" style="background-image: url('https://images.unsplash.com/photo-1493225255756-d9584f8606e9?auto=format&fit=crop&w=800&q=80')"></div>
-            <div class="event-details">
-                <span class="date-blue">MAY 18 • SUN • 7:00 PM</span>
-                <div class="event-name">Morgan Wallen: One Night At A Time</div>
-                <div class="sub-text">Nashville, TN • Nissan Stadium</div>
+    <div class="nav-bar"><a href="#" class="logo">ticketmaster</a><span style="color:white; font-size:18px;">👤</span></div>
+    <div class="search-hero"><h1>Discover Events Near You</h1><input type="text" class="search-input" placeholder="Search for artists, venues, or events"></div>
+    <div class="container">
+        <div class="card">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1493225255756-d9584f8606e9?auto=format&fit=crop&w=500&q=80')"></div>
+            <div class="card-content">
+                <div class="card-date">MAY 18 • SUN • 7:00 PM</div>
+                <div class="card-title">Morgan Wallen: One Night At A Time</div>
+                <div class="card-venue">Nissan Stadium • Nashville, TN</div>
                 <div class="card-footer">
-                    <strong>From $285</strong>
-                    <a href="ticket.html?event=Morgan Wallen&date=Sun, May 18 • 7:00 PM&venue=Nissan Stadium, Nashville, TN" class="see-tickets-btn">See Tickets</a>
+                    <div><span class="price-label">From</span><span class="price-val">$285</span></div>
+                    <a href="ticket.html?event=MORGAN WALLEN: ONE NIGHT AT A TIME&date=Sat, Aug 22, 2026 • 8:00 PM&venue=Rogers Stadium Toronto, ON, Canada" class="btn">See Tickets</a>
                 </div>
             </div>
         </div>
-
-        <div class="event-card">
-            <div class="event-image" style="background-image: url('https://images.unsplash.com/photo-1540324155974-7523202daa3f?auto=format&fit=crop&w=800&q=80')"></div>
-            <div class="event-details">
-                <span class="date-blue">JUNE 02 • MON • 7:30 PM</span>
-                <div class="event-name">WWE Monday Night RAW</div>
-                <div class="sub-text">Chicago, IL • United Center</div>
-                <div class="card-footer">
-                    <strong>From $55</strong>
-                    <a href="ticket.html?event=WWE Monday Night RAW&date=Mon, June 02 • 7:30 PM&venue=United Center, Chicago, IL" class="see-tickets-btn">See Tickets</a>
-                </div>
-            </div>
-        </div>
-
     </div>
 </body>
 </html>
