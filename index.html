@@ -3,169 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Tickets - Professional</title>
+    <title>Ticketmaster - Discover Events</title>
     <style>
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f5f5f5;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
-            display: flex;
-            justify-content: center;
-            padding: 20px 0;
+            background-color: #ffffff;
+            color: #1f1f1f;
         }
 
-        /* Main Ticket Container */
-        .ticket-container {
-            width: 90%;
-            max-width: 380px;
-            background-color: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
-        /* Blue Header Section */
-        .ticket-header {
-            background-color: #026cdf;
-            color: white;
-            padding: 20px;
-            position: relative;
-        }
-
-        .entry-label {
-            font-size: 14px;
-            opacity: 0.9;
-            margin-bottom: 10px;
-        }
-
-        .seating-grid {
+        /* Top Header */
+        .tm-header {
+            background-color: #1f262d;
+            padding: 12px 20px;
             display: flex;
             justify-content: space-between;
-            text-align: left;
+            align-items: center;
         }
 
-        .seat-box {
-            flex: 1;
-        }
-
-        .label {
-            font-size: 11px;
-            text-transform: uppercase;
-            opacity: 0.8;
-            display: block;
-        }
-
-        .value {
-            font-size: 24px;
+        .tm-logo {
+            color: white;
+            font-size: 20px;
             font-weight: bold;
+            text-decoration: none;
         }
 
-        /* Image Section */
-        .event-banner {
+        /* Blue Search Section */
+        .search-section {
+            background-color: #026cdf;
+            padding: 40px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .search-section h1 {
+            margin: 0 0 20px 0;
+            font-size: 28px;
+        }
+
+        .search-bar {
+            width: 100%;
+            max-width: 500px;
+            padding: 15px 20px;
+            border-radius: 30px;
+            border: none;
+            font-size: 16px;
+            outline: none;
+        }
+
+        /* Event Grid */
+        .content-body {
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .event-card {
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .event-image {
             width: 100%;
             height: 200px;
-            background-image: url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');
+            background-image: url('https://images.unsplash.com/photo-1459749411177-042180ce673c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');
             background-size: cover;
             background-position: center;
         }
 
-        /* Event Details */
-        .event-info {
-            padding: 20px;
-            background-color: white;
-        }
-
-        .event-title {
-            font-size: 18px;
-            font-weight: 800;
-            margin: 0 0 8px 0;
-            text-transform: uppercase;
-            color: #111;
-        }
-
-        .event-time, .event-location {
-            font-size: 13px;
-            color: #555;
-            margin: 2px 0;
-        }
-
-        /* Mobile Ticket Footer */
-        .ticket-footer {
-            padding: 20px;
-            text-align: center;
-            border-top: 1px solid #eee;
-        }
-
-        .mobile-label {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        .view-btn {
-            background-color: #000;
-            color: white;
-            width: 100%;
+        .event-details {
             padding: 15px;
-            border: none;
-            border-radius: 8px;
+        }
+
+        .date-blue {
+            color: #026cdf;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .event-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 8px 0;
+        }
+
+        .sub-text {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .tickets-left {
+            color: #c00;
+            font-weight: bold;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .card-footer {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            cursor: pointer;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
         }
 
-        .view-btn::before {
-            content: '🎟️';
-            margin-right: 10px;
+        .price {
+            font-weight: bold;
+            font-size: 18px;
         }
 
-        .details-link {
-            display: block;
-            margin-top: 15px;
-            color: #888;
-            font-size: 12px;
+        .see-tickets-btn {
+            background-color: #026cdf;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
             text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .see-tickets-btn:hover {
+            background-color: #0156b3;
         }
     </style>
 </head>
 <body>
 
-    <div class="ticket-container">
-        <div class="ticket-header">
-            <div class="entry-label">Entry 1</div>
-            <div class="seating-grid">
-                <div class="seat-box">
-                    <span class="label">SEC</span>
-                    <span class="value">B5</span>
-                </div>
-                <div class="seat-box">
-                    <span class="label">ROW</span>
-                    <span class="value">8</span>
-                </div>
-                <div class="seat-box" style="text-align: right;">
-                    <span class="label">SEAT</span>
-                    <span class="value">7</span>
+    <div class="tm-header">
+        <a href="#" class="tm-logo">ticketmaster</a>
+        <div style="color: white; font-size: 20px;">👤</div>
+    </div>
+
+    <div class="search-section">
+        <h1>Discover Events Near You</h1>
+        <input type="text" class="search-bar" placeholder="Search for artists, venues, or events">
+    </div>
+
+    <div class="content-body">
+        
+        <div class="event-card">
+            <div class="event-image"></div>
+            <div class="event-details">
+                <span class="date-blue">OCT 24 • SAT • 7:00 PM</span>
+                <div class="event-name">The Neon Midnight Tour</div>
+                <div class="sub-text">Cyber Synth • USA Tour</div>
+                <div class="tickets-left">10 Tickets Remaining</div>
+                
+                <div class="card-footer">
+                    <div class="price">From $45</div>
+                    <a href="https://active-tickets.onrender.com" class="see-tickets-btn">See Tickets</a>
                 </div>
             </div>
         </div>
 
-        <div class="event-banner"></div>
-
-        <div class="event-info">
-            <h2 class="event-title">BTS WORLD TOUR 'ARIRANG' IN TORONTO</h2>
-            <p class="event-time">Sat, Aug 22, 2026 • 8:00 PM</p>
-            <p class="event-location">Rogers Stadium Toronto, ON, Canada</p>
+        <div class="event-card">
+            <div class="event-image" style="background-image: url('https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&w=800&q=80')"></div>
+            <div class="event-details">
+                <span class="date-blue">NOV 12 • THU • 8:30 PM</span>
+                <div class="event-name">LA Summer Festival</div>
+                <div class="sub-text">Los Angeles, CA • Rogers Center</div>
+                <div class="tickets-left">Limited Availability</div>
+                
+                <div class="card-footer">
+                    <div class="price">From $120</div>
+                    <a href="https://active-tickets.onrender.com" class="see-tickets-btn">See Tickets</a>
+                </div>
+            </div>
         </div>
 
-        <div class="ticket-footer">
-            <span class="mobile-label">Mobile Ticket</span>
-            <button class="view-btn">View Ticket</button>
-            <a href="#" class="details-link">Ticket Details</a>
-        </div>
     </div>
 
 </body>
