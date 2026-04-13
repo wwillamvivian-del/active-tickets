@@ -13,17 +13,16 @@
         .ticket-body { padding: 20px; display: flex; justify-content: center; }
         .ticket-card { width: 100%; max-width: 350px; background: white; border-radius: 15px; overflow: hidden; color: #000; }
         .blue-header { background: #026cdf; color: white; padding: 20px; position: relative; }
-        .info-icon { position: absolute; right: 15px; top: 15px; border: 1px solid white; border-radius: 50%; width: 18px; height: 18px; text-align: center; font-size: 12px; line-height: 18px; }
         .seating { display: flex; justify-content: space-between; margin-top: 10px; }
         .seat-item { flex: 1; }
         .label { font-size: 10px; opacity: 0.8; display: block; }
         .value { font-size: 22px; font-weight: bold; }
         .event-img { width: 100%; height: 200px; background: url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=500&q=80') center/cover; }
         .event-info { padding: 20px; text-align: left; }
-        .event-title { font-size: 18px; font-weight: 900; margin: 0; line-height: 1.2; }
+        .event-title { font-size: 18px; font-weight: 900; margin: 0; text-transform: uppercase; }
         .event-meta { font-size: 13px; color: #666; margin-top: 5px; }
         .footer-action { padding: 20px; text-align: center; border-top: 1px dotted #ccc; }
-        .view-btn { background: #000; color: white; width: 100%; padding: 15px; border-radius: 8px; font-weight: bold; border: none; font-size: 16px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .view-btn { background: #000; color: white; width: 100%; padding: 15px; border-radius: 8px; font-weight: bold; border: none; font-size: 16px; }
     </style>
 </head>
 <body>
@@ -32,7 +31,6 @@
     <div class="ticket-body">
         <div class="ticket-card">
             <div class="blue-header">
-                <div class="info-icon">i</div>
                 <div style="font-size: 13px; margin-bottom: 5px;">Entry 1</div>
                 <div class="seating">
                     <div class="seat-item"><span class="label">SEC</span><span class="value">B5</span></div>
@@ -42,15 +40,23 @@
             </div>
             <div class="event-img"></div>
             <div class="event-info">
-                <h2 class="event-title">MORGAN WALLEN: ONE NIGHT AT A TIME</h2>
-                <p class="event-meta">Sat, Aug 22, 2026 • 8:00 PM<br>Rogers Stadium Toronto, ON, Canada</p>
+                <h2 id="display-title" class="event-title">LOADING...</h2>
+                <p id="display-meta" class="event-meta"></p>
             </div>
             <div class="footer-action">
                 <p style="font-size: 14px; color: #666; margin-bottom: 10px;">Mobile Ticket</p>
                 <button class="view-btn">View Ticket</button>
-                <p style="font-size: 12px; color: #999; margin-top: 15px; text-decoration: underline;">Ticket Details</p>
             </div>
         </div>
     </div>
+
+    <script>
+        // This script reads the info from the URL and puts it on the ticket
+        const params = new URLSearchParams(window.location.search);
+        if(params.has('event')) {
+            document.getElementById('display-title').innerText = params.get('event');
+            document.getElementById('display-meta').innerHTML = params.get('date') + "<br>" + params.get('venue');
+        }
+    </script>
 </body>
 </html>
