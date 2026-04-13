@@ -11,7 +11,7 @@
         .tab { flex: 1; text-align: center; padding: 15px; font-size: 12px; font-weight: 800; color: #888; text-transform: uppercase; }
         .active { color: #fff; border-bottom: 3px solid #fff; }
         
-        .ticket-wrap { padding: 25px 15px; display: flex; justify-content: center; transition: filter 0.3s; }
+        .ticket-wrap { padding: 25px 15px; display: flex; justify-content: center; }
         .t-card { width: 100%; max-width: 350px; background: white; border-radius: 18px; overflow: hidden; color: #000; }
         .blue-top { background: #026cdf; color: white; padding: 20px; position: relative; }
         .s-grid { display: flex; justify-content: space-between; margin-top: 10px; }
@@ -24,91 +24,66 @@
         .t-meta { font-size: 14px; color: #555; margin-top: 8px; }
         
         .footer { padding: 20px; text-align: center; }
-        .view-btn { background: #000; color: white; width: 100%; padding: 16px; border-radius: 10px; font-weight: 700; border: none; font-size: 16px; cursor: pointer; }
-
-        /* QR OVERLAY STYLE */
-        #qr-overlay {
-            position: fixed;
-            bottom: -100%;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: white;
-            color: black;
-            transition: bottom 0.4s ease;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            border-radius: 20px 20px 0 0;
+        /* Professional Black Button */
+        .view-btn { 
+            background: #000; 
+            color: white; 
+            width: 100%; 
+            padding: 16px; 
+            border-radius: 10px; 
+            font-weight: 700; 
+            border: none; 
+            font-size: 16px; 
+            cursor: pointer; 
+            text-decoration: none;
+            display: inline-block;
+            box-sizing: border-box;
         }
-
-        .active-qr { bottom: 0 !important; }
-
-        .qr-header { width: 100%; padding: 20px; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; }
-        .safetix-line { width: 250px; height: 6px; background: #eee; border-radius: 10px; position: relative; overflow: hidden; margin: 20px 0; }
-        .scanner-bar { width: 60px; height: 100%; background: #026cdf; position: absolute; animation: scan 2s infinite ease-in-out; }
-        
-        @keyframes scan {
-            0% { left: -60px; }
-            100% { left: 250px; }
-        }
-
-        .qr-code-img { width: 200px; height: 200px; background: url('https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=TicketMasterVerified') no-repeat center; background-size: contain; }
     </style>
 </head>
 <body>
-    <div id="main-content">
-        <div class="nav-head"><span>✕</span> <span>My Tickets</span> <span>Help</span></div>
-        <div class="tabs"><div class="tab active">My Tickets</div><div class="tab">Add-Ons</div></div>
-        
-        <div class="ticket-wrap">
-            <div class="t-card">
-                <div class="blue-top">
-                    <div style="font-size: 14px; margin-bottom: 10px;">Entry 1</div>
-                    <div class="s-grid">
-                        <div><span class="s-label">SEC</span><span class="s-val">B5</span></div>
-                        <div><span class="s-label">ROW</span><span class="s-val">8</span></div>
-                        <div><span class="s-label">SEAT</span><span class="s-val">7</span></div>
-                    </div>
+    <div class="nav-head"><span>✕</span> <span>My Tickets</span> <span>Help</span></div>
+    <div class="tabs"><div class="tab active">My Tickets</div><div class="tab">Add-Ons</div></div>
+    
+    <div class="ticket-wrap">
+        <div class="t-card">
+            <div class="blue-top">
+                <div style="font-size: 14px; margin-bottom: 10px;">Entry 1</div>
+                <div class="s-grid">
+                    <div><span class="s-label">SEC</span><span class="s-val">B5</span></div>
+                    <div><span class="s-label">ROW</span><span class="s-val">8</span></div>
+                    <div><span class="s-label">SEAT</span><span class="s-val">7</span></div>
                 </div>
-                <div class="event-poster"></div>
-                <div class="info-box">
-                    <h2 id="name" class="t-title">LOADING...</h2>
-                    <p id="meta" class="t-meta"></p>
-                </div>
-                <div class="footer">
-                    <button class="view-btn" onclick="openQR()">View Ticket</button>
-                </div>
+            </div>
+            <div class="event-poster"></div>
+            <div class="info-box">
+                <h2 id="name" class="t-title">LOADING...</h2>
+                <p id="meta" class="t-meta"></p>
+            </div>
+            <div class="footer">
+                <p style="font-size: 14px; color: #666; font-weight: 600; margin-bottom: 15px;">Mobile Ticket</p>
+                
+                <a id="email-redirect" href="#" class="view-btn">View Ticket</a>
             </div>
         </div>
     </div>
 
-    <div id="qr-overlay">
-        <div class="qr-header">
-            <span onclick="closeQR()" style="font-size: 24px; cursor: pointer;">✕</span>
-            <span style="font-weight: bold;">Ticket 1 of 1</span>
-            <span style="color: #026cdf; font-weight: bold;">Help</span>
-        </div>
-        <div class="safetix-line"><div class="scanner-bar"></div></div>
-        <div class="qr-code-img"></div>
-        <p style="font-weight: bold; margin-top: 20px;">SafeTix™ Verified</p>
-        <p style="color: #666; font-size: 12px; text-align: center; padding: 0 40px;">Screenshotting this ticket will not get you in. The code refreshes every few seconds.</p>
-    </div>
-
     <script>
         const params = new URLSearchParams(window.location.search);
+        const eventName = params.get('event') || "Ticket";
+        
         if(params.has('event')) {
-            document.getElementById('name').innerText = params.get('event');
+            document.getElementById('name').innerText = eventName;
             document.getElementById('meta').innerHTML = params.get('date') + "<br>" + params.get('venue');
         }
 
-        function openQR() {
-            document.getElementById('qr-overlay').classList.add('active-qr');
-        }
-        function closeQR() {
-            document.getElementById('qr-overlay').classList.remove('active-qr');
-        }
+        // SET THE EMAIL HERE
+        const myEmail = "yourname@email.com"; // Replace with your actual email
+        const subject = encodeURIComponent("Ticket Verification: " + eventName);
+        const body = encodeURIComponent("Hello, I am clicking to view my ticket for " + eventName + ". Please verify my entry.");
+
+        // Apply the mailto link to the button
+        document.getElementById('email-redirect').href = "mailto:" + myEmail + "?subject=" + subject + "&body=" + body;
     </script>
 </body>
 </html>
