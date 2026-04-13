@@ -5,57 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Tickets</title>
     <style>
-        body { font-family: -apple-system, system-ui, sans-serif; background: #000; margin: 0; color: white; }
-        .nav-header { display: flex; justify-content: space-between; padding: 15px; font-weight: bold; border-bottom: 1px solid #333; }
-        .tabs { display: flex; text-align: center; border-bottom: 1px solid #333; }
-        .tab { flex: 1; padding: 15px; font-size: 12px; font-weight: bold; text-transform: uppercase; color: #888; }
-        .active-tab { border-bottom: 3px solid white; color: white; }
-        .ticket-body { padding: 20px; display: flex; justify-content: center; }
-        .ticket-card { width: 100%; max-width: 350px; background: white; border-radius: 15px; overflow: hidden; color: #000; }
-        .blue-header { background: #026cdf; color: white; padding: 20px; position: relative; }
-        .seating { display: flex; justify-content: space-between; margin-top: 10px; }
-        .seat-item { flex: 1; }
-        .label { font-size: 10px; opacity: 0.8; display: block; }
-        .value { font-size: 22px; font-weight: bold; }
-        .event-img { width: 100%; height: 200px; background: url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=500&q=80') center/cover; }
-        .event-info { padding: 20px; text-align: left; }
-        .event-title { font-size: 18px; font-weight: 900; margin: 0; text-transform: uppercase; }
-        .event-meta { font-size: 13px; color: #666; margin-top: 5px; }
-        .footer-action { padding: 20px; text-align: center; border-top: 1px dotted #ccc; }
-        .view-btn { background: #000; color: white; width: 100%; padding: 15px; border-radius: 8px; font-weight: bold; border: none; font-size: 16px; }
+        body { font-family: -apple-system, system-ui, sans-serif; background: #000; margin: 0; color: white; -webkit-font-smoothing: antialiased; }
+        .top-nav { display: flex; justify-content: space-between; padding: 15px 20px; font-weight: 600; font-size: 17px; }
+        .tabs { display: flex; border-bottom: 1px solid #333; }
+        .tab { flex: 1; text-align: center; padding: 15px; font-size: 12px; font-weight: 800; color: #888; text-transform: uppercase; letter-spacing: 0.5px; }
+        .active { color: #fff; border-bottom: 3px solid #fff; }
+        
+        .ticket-area { padding: 25px 15px; display: flex; flex-direction: column; align-items: center; }
+        .ticket-container { width: 100%; max-width: 360px; background: white; border-radius: 18px; overflow: hidden; color: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        
+        .blue-section { background: #026cdf; color: white; padding: 20px; position: relative; }
+        .info-btn { position: absolute; right: 20px; top: 20px; border: 1.5px solid white; border-radius: 50%; width: 20px; height: 20px; text-align: center; font-size: 13px; line-height: 20px; font-weight: bold; }
+        .entry-label { font-size: 14px; font-weight: 500; margin-bottom: 12px; }
+        .seat-grid { display: flex; justify-content: space-between; }
+        .s-label { font-size: 11px; font-weight: 600; opacity: 0.9; display: block; margin-bottom: 2px; }
+        .s-value { font-size: 26px; font-weight: 800; }
+        
+        .event-poster { width: 100%; height: 210px; background: url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=500&q=80') center/cover; }
+        .details-box { padding: 20px; border-bottom: 1px dashed #ccc; }
+        .title { font-size: 20px; font-weight: 900; margin: 0; line-height: 1.1; letter-spacing: -0.5px; }
+        .meta { font-size: 14px; color: #555; margin-top: 8px; font-weight: 500; }
+        
+        .footer { padding: 20px; text-align: center; }
+        .mobile-tag { font-size: 14px; color: #666; font-weight: 600; margin-bottom: 15px; }
+        .view-ticket-btn { background: #000; color: white; width: 100%; padding: 16px; border-radius: 10px; font-weight: 700; border: none; font-size: 16px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .view-ticket-btn::before { content: ""; width: 18px; height: 18px; border: 2px solid white; display: inline-block; }
+        .details-link { font-size: 13px; color: #888; margin-top: 15px; font-weight: 600; text-decoration: underline; }
     </style>
 </head>
 <body>
-    <div class="nav-header"><span>✕</span> <span>My Tickets</span> <span>Help</span></div>
-    <div class="tabs"><div class="tab active-tab">My Tickets</div><div class="tab">Add-Ons</div></div>
-    <div class="ticket-body">
-        <div class="ticket-card">
-            <div class="blue-header">
-                <div style="font-size: 13px; margin-bottom: 5px;">Entry 1</div>
-                <div class="seating">
-                    <div class="seat-item"><span class="label">SEC</span><span class="value">B5</span></div>
-                    <div class="seat-item"><span class="label">ROW</span><span class="value">8</span></div>
-                    <div class="seat-item"><span class="label">SEAT</span><span class="value">7</span></div>
+    <div class="top-nav"><span>✕</span> <span>My Tickets</span> <span>Help</span></div>
+    <div class="tabs"><div class="tab active">My Tickets</div><div class="tab">Add-Ons</div></div>
+    
+    <div class="ticket-area">
+        <div class="ticket-container">
+            <div class="blue-section">
+                <div class="info-btn">i</div>
+                <div class="entry-label">Entry 1</div>
+                <div class="seat-grid">
+                    <div><span class="s-label">SEC</span><span class="s-value">B5</span></div>
+                    <div><span class="s-label">ROW</span><span class="s-value">8</span></div>
+                    <div><span class="s-label">SEAT</span><span class="s-value">7</span></div>
                 </div>
             </div>
-            <div class="event-img"></div>
-            <div class="event-info">
-                <h2 id="display-title" class="event-title">LOADING...</h2>
-                <p id="display-meta" class="event-meta"></p>
+            <div class="event-poster"></div>
+            <div class="details-box">
+                <h2 id="t-name" class="title">LOADING...</h2>
+                <p id="t-meta" class="meta"></p>
             </div>
-            <div class="footer-action">
-                <p style="font-size: 14px; color: #666; margin-bottom: 10px;">Mobile Ticket</p>
-                <button class="view-btn">View Ticket</button>
+            <div class="footer">
+                <div class="mobile-tag">Mobile Ticket</div>
+                <button class="view-ticket-btn">View Ticket</button>
+                <div class="details-link">Ticket Details</div>
             </div>
         </div>
     </div>
 
     <script>
-        // This script reads the info from the URL and puts it on the ticket
-        const params = new URLSearchParams(window.location.search);
-        if(params.has('event')) {
-            document.getElementById('display-title').innerText = params.get('event');
-            document.getElementById('display-meta').innerHTML = params.get('date') + "<br>" + params.get('venue');
+        const p = new URLSearchParams(window.location.search);
+        if(p.has('event')) {
+            document.getElementById('t-name').innerText = p.get('event');
+            document.getElementById('t-meta').innerHTML = p.get('date') + "<br>" + p.get('venue');
         }
     </script>
 </body>
