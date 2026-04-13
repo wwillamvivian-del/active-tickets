@@ -3,69 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master Ticket Status</title>
+    <title>Ticket Management | Professional Dashboard</title>
     <style>
+        :root {
+            --tm-blue: #026cdf;
+            --tm-dark: #1f1f1f;
+            --tm-black: #000000;
+            --tm-gray: #f4f4f4;
+            --status-green: #278644;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #121212;
-            color: #ffffff;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--tm-black);
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Top Navigation Bar */
+        .navbar {
+            background-color: var(--tm-dark);
+            padding: 15px 20px;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            height: 100vh;
+            border-bottom: 1px solid #333;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 22px;
+            letter-spacing: -1px;
+        }
+
+        .logo span { color: var(--tm-blue); }
+
+        /* Dashboard Container */
+        .dashboard {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        /* Ticket Card */
+        .ticket-card {
+            background: #ffffff;
+            color: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .ticket-left {
+            background: var(--tm-blue);
+            width: 15px;
+        }
+
+        .ticket-content {
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .event-name {
+            font-size: 20px;
+            font-weight: bold;
             margin: 0;
         }
-        .container {
-            background: #1e1e1e;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            text-align: center;
-            border: 2px solid #28a745;
-            max-width: 400px;
-            width: 90%;
-        }
-        .status-badge {
-            background-color: #28a745;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 50px;
-            display: inline-block;
-            font-weight: bold;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-        }
-        h1 {
-            font-size: 2em;
-            margin: 10px 0;
-            color: #28a745;
-        }
-        p {
-            color: #aaaaaa;
-            line-height: 1.6;
-        }
-        .time-display {
-            margin-top: 20px;
-            font-family: monospace;
+
+        .event-details {
             color: #666;
+            font-size: 14px;
+            margin: 5px 0;
+        }
+
+        .status-pill {
+            background: var(--status-green);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        /* Barcode Section */
+        .ticket-right {
+            border-left: 2px dashed #ccc;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #fafafa;
+            min-width: 120px;
+        }
+
+        .barcode {
+            width: 80px;
+            height: 40px;
+            background: repeating-linear-gradient(90deg, #000, #000 2px, #fff 2px, #fff 4px);
+        }
+
+        .seat-info {
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="status-badge">SYSTEM LIVE</div>
-        <h1>TICKET ACTIVE</h1>
-        <p>Your master tracking list has been successfully authorized and is now running on the global network.</p>
-        <div class="time-display" id="clock"></div>
+
+    <div class="navbar">
+        <div class="logo">TICKET<span>MASTER</span> PRO</div>
+        <div style="font-size: 12px; color: #888;" id="live-clock"></div>
+    </div>
+
+    <div class="dashboard">
+        <div class="header-flex">
+            <h2>Your Active Tickets</h2>
+            <button style="background: var(--tm-blue); color: white; border: none; padding: 8px 15px; border-radius: 5px; font-weight: bold;">+ Transfer</button>
+        </div>
+
+        <div class="ticket-card">
+            <div class="ticket-left"></div>
+            <div class="ticket-content">
+                <p class="event-details">SEC 102 | ROW G | SEAT 14</p>
+                <h3 class="event-name">World Tour: Live Event</h3>
+                <p class="event-details">Friday, May 15 • 7:30 PM</p>
+                <div class="status-pill">✓ VERIFIED ACTIVE</div>
+            </div>
+            <div class="ticket-right">
+                <div class="barcode"></div>
+                <div class="seat-info">SEC 102, 14</div>
+            </div>
+        </div>
+
+        <div class="ticket-card">
+            <div class="ticket-left" style="background: #888;"></div>
+            <div class="ticket-content">
+                <p class="event-details">SEC 205 | ROW A | SEAT 02</p>
+                <h3 class="event-name">Global Tech Conference 2026</h3>
+                <p class="event-details">Monday, June 10 • 9:00 AM</p>
+                <div class="status-pill" style="background: #026cdf;">PENDING SYNC</div>
+            </div>
+            <div class="ticket-right">
+                <div class="barcode"></div>
+                <div class="seat-info">SEC 205, 02</div>
+            </div>
+        </div>
+
     </div>
 
     <script>
-        function updateTime() {
+        function updateClock() {
             const now = new Date();
-            document.getElementById('clock').innerText = now.toLocaleString();
+            document.getElementById('live-clock').innerText = 'System Time: ' + now.toLocaleTimeString();
         }
-        setInterval(updateTime, 1000);
-        updateTime();
+        setInterval(updateClock, 1000);
+        updateClock();
     </script>
 </body>
 </html>
