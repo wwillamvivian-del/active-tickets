@@ -3,175 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ticket Management | Professional Dashboard</title>
+    <title>My Tickets - Professional</title>
     <style>
-        :root {
-            --tm-blue: #026cdf;
-            --tm-dark: #1f1f1f;
-            --tm-black: #000000;
-            --tm-gray: #f4f4f4;
-            --status-green: #278644;
-        }
-
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: var(--tm-black);
-            color: white;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f5f5f5;
             margin: 0;
-            padding: 0;
-        }
-
-        /* Top Navigation Bar */
-        .navbar {
-            background-color: var(--tm-dark);
-            padding: 15px 20px;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #333;
+            justify-content: center;
+            padding: 20px 0;
         }
 
-        .logo {
-            font-weight: bold;
-            font-size: 22px;
-            letter-spacing: -1px;
-        }
-
-        .logo span { color: var(--tm-blue); }
-
-        /* Dashboard Container */
-        .dashboard {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-        }
-
-        .header-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        /* Ticket Card */
-        .ticket-card {
-            background: #ffffff;
-            color: #000;
-            border-radius: 12px;
-            overflow: hidden;
-            display: flex;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-
-        .ticket-left {
-            background: var(--tm-blue);
-            width: 15px;
-        }
-
-        .ticket-content {
-            padding: 20px;
-            flex-grow: 1;
-        }
-
-        .event-name {
-            font-size: 20px;
-            font-weight: bold;
-            margin: 0;
-        }
-
-        .event-details {
-            color: #666;
-            font-size: 14px;
-            margin: 5px 0;
-        }
-
-        .status-pill {
-            background: var(--status-green);
-            color: white;
-            padding: 4px 12px;
+        /* Main Ticket Container */
+        .ticket-container {
+            width: 90%;
+            max-width: 380px;
+            background-color: white;
             border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-            display: inline-block;
-            margin-top: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
 
-        /* Barcode Section */
-        .ticket-right {
-            border-left: 2px dashed #ccc;
+        /* Blue Header Section */
+        .ticket-header {
+            background-color: #026cdf;
+            color: white;
             padding: 20px;
+            position: relative;
+        }
+
+        .entry-label {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .seating-grid {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
+            text-align: left;
+        }
+
+        .seat-box {
+            flex: 1;
+        }
+
+        .label {
+            font-size: 11px;
+            text-transform: uppercase;
+            opacity: 0.8;
+            display: block;
+        }
+
+        .value {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Image Section */
+        .event-banner {
+            width: 100%;
+            height: 200px;
+            background-image: url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Event Details */
+        .event-info {
+            padding: 20px;
+            background-color: white;
+        }
+
+        .event-title {
+            font-size: 18px;
+            font-weight: 800;
+            margin: 0 0 8px 0;
+            text-transform: uppercase;
+            color: #111;
+        }
+
+        .event-time, .event-location {
+            font-size: 13px;
+            color: #555;
+            margin: 2px 0;
+        }
+
+        /* Mobile Ticket Footer */
+        .ticket-footer {
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+
+        .mobile-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .view-btn {
+            background-color: #000;
+            color: white;
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            display: flex;
             align-items: center;
             justify-content: center;
-            background: #fafafa;
-            min-width: 120px;
+            cursor: pointer;
         }
 
-        .barcode {
-            width: 80px;
-            height: 40px;
-            background: repeating-linear-gradient(90deg, #000, #000 2px, #fff 2px, #fff 4px);
+        .view-btn::before {
+            content: '🎟️';
+            margin-right: 10px;
         }
 
-        .seat-info {
+        .details-link {
+            display: block;
+            margin-top: 15px;
+            color: #888;
             font-size: 12px;
-            font-weight: bold;
-            margin-top: 10px;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
 
-    <div class="navbar">
-        <div class="logo">TICKET<span>MASTER</span> PRO</div>
-        <div style="font-size: 12px; color: #888;" id="live-clock"></div>
+    <div class="ticket-container">
+        <div class="ticket-header">
+            <div class="entry-label">Entry 1</div>
+            <div class="seating-grid">
+                <div class="seat-box">
+                    <span class="label">SEC</span>
+                    <span class="value">B5</span>
+                </div>
+                <div class="seat-box">
+                    <span class="label">ROW</span>
+                    <span class="value">8</span>
+                </div>
+                <div class="seat-box" style="text-align: right;">
+                    <span class="label">SEAT</span>
+                    <span class="value">7</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="event-banner"></div>
+
+        <div class="event-info">
+            <h2 class="event-title">BTS WORLD TOUR 'ARIRANG' IN TORONTO</h2>
+            <p class="event-time">Sat, Aug 22, 2026 • 8:00 PM</p>
+            <p class="event-location">Rogers Stadium Toronto, ON, Canada</p>
+        </div>
+
+        <div class="ticket-footer">
+            <span class="mobile-label">Mobile Ticket</span>
+            <button class="view-btn">View Ticket</button>
+            <a href="#" class="details-link">Ticket Details</a>
+        </div>
     </div>
 
-    <div class="dashboard">
-        <div class="header-flex">
-            <h2>Your Active Tickets</h2>
-            <button style="background: var(--tm-blue); color: white; border: none; padding: 8px 15px; border-radius: 5px; font-weight: bold;">+ Transfer</button>
-        </div>
-
-        <div class="ticket-card">
-            <div class="ticket-left"></div>
-            <div class="ticket-content">
-                <p class="event-details">SEC 102 | ROW G | SEAT 14</p>
-                <h3 class="event-name">World Tour: Live Event</h3>
-                <p class="event-details">Friday, May 15 • 7:30 PM</p>
-                <div class="status-pill">✓ VERIFIED ACTIVE</div>
-            </div>
-            <div class="ticket-right">
-                <div class="barcode"></div>
-                <div class="seat-info">SEC 102, 14</div>
-            </div>
-        </div>
-
-        <div class="ticket-card">
-            <div class="ticket-left" style="background: #888;"></div>
-            <div class="ticket-content">
-                <p class="event-details">SEC 205 | ROW A | SEAT 02</p>
-                <h3 class="event-name">Global Tech Conference 2026</h3>
-                <p class="event-details">Monday, June 10 • 9:00 AM</p>
-                <div class="status-pill" style="background: #026cdf;">PENDING SYNC</div>
-            </div>
-            <div class="ticket-right">
-                <div class="barcode"></div>
-                <div class="seat-info">SEC 205, 02</div>
-            </div>
-        </div>
-
-    </div>
-
-    <script>
-        function updateClock() {
-            const now = new Date();
-            document.getElementById('live-clock').innerText = 'System Time: ' + now.toLocaleTimeString();
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-    </script>
 </body>
 </html>
